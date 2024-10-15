@@ -1,0 +1,136 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.venu"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:3:5-67
+11-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:3:22-64
+12    <!--
+13    This manifest file is used only by Gradle to configure debug-only capabilities
+14    for React Native Apps.
+15    -->
+16    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+16-->[com.facebook.react:react-android:0.75.4] /home/nathferr/.gradle/caches/8.8/transforms/d7707abf8a129cea02d85e737debfd11/transformed/jetified-react-android-0.75.4-debug/AndroidManifest.xml:16:5-78
+16-->[com.facebook.react:react-android:0.75.4] /home/nathferr/.gradle/caches/8.8/transforms/d7707abf8a129cea02d85e737debfd11/transformed/jetified-react-android-0.75.4-debug/AndroidManifest.xml:16:22-75
+17
+18    <permission
+18-->[androidx.core:core:1.10.0] /home/nathferr/.gradle/caches/8.8/transforms/75cf287037c599bf201b193ef92a4816/transformed/core-1.10.0/AndroidManifest.xml:22:5-24:47
+19        android:name="com.venu.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+19-->[androidx.core:core:1.10.0] /home/nathferr/.gradle/caches/8.8/transforms/75cf287037c599bf201b193ef92a4816/transformed/core-1.10.0/AndroidManifest.xml:23:9-81
+20        android:protectionLevel="signature" />
+20-->[androidx.core:core:1.10.0] /home/nathferr/.gradle/caches/8.8/transforms/75cf287037c599bf201b193ef92a4816/transformed/core-1.10.0/AndroidManifest.xml:24:9-44
+21
+22    <uses-permission android:name="com.venu.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+22-->[androidx.core:core:1.10.0] /home/nathferr/.gradle/caches/8.8/transforms/75cf287037c599bf201b193ef92a4816/transformed/core-1.10.0/AndroidManifest.xml:26:5-97
+22-->[androidx.core:core:1.10.0] /home/nathferr/.gradle/caches/8.8/transforms/75cf287037c599bf201b193ef92a4816/transformed/core-1.10.0/AndroidManifest.xml:26:22-94
+23
+24    <application
+24-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:5:5-25:19
+25        android:name="com.venu.MainApplication"
+25-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:6:7-38
+26        android:allowBackup="false"
+26-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:10:7-34
+27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+27-->[androidx.core:core:1.10.0] /home/nathferr/.gradle/caches/8.8/transforms/75cf287037c599bf201b193ef92a4816/transformed/core-1.10.0/AndroidManifest.xml:28:18-86
+28        android:debuggable="true"
+29        android:extractNativeLibs="false"
+30        android:icon="@mipmap/ic_launcher"
+30-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:8:7-41
+31        android:label="@string/app_name"
+31-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:7:7-39
+32        android:roundIcon="@mipmap/ic_launcher_round"
+32-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:9:7-52
+33        android:supportsRtl="true"
+33-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:12:7-33
+34        android:theme="@style/AppTheme"
+34-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:11:7-38
+35        android:usesCleartextTraffic="true" >
+35-->/home/nathferr/VenU/android/app/src/debug/AndroidManifest.xml:6:9-44
+36        <activity
+36-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:13:7-24:18
+37            android:name="com.venu.MainActivity"
+37-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:14:9-37
+38            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+38-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:16:9-118
+39            android:exported="true"
+39-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:19:9-32
+40            android:label="@string/app_name"
+40-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:15:9-41
+41            android:launchMode="singleTask"
+41-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:17:9-40
+42            android:windowSoftInputMode="adjustResize" >
+42-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:18:9-51
+43            <intent-filter>
+43-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:20:9-23:25
+44                <action android:name="android.intent.action.MAIN" />
+44-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:21:13-65
+44-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:21:21-62
+45
+46                <category android:name="android.intent.category.LAUNCHER" />
+46-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:22:13-73
+46-->/home/nathferr/VenU/android/app/src/main/AndroidManifest.xml:22:23-70
+47            </intent-filter>
+48        </activity>
+49
+50        <provider
+50-->[:react-native-image-picker] /home/nathferr/VenU/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:8:9-16:20
+51            android:name="com.imagepicker.ImagePickerProvider"
+51-->[:react-native-image-picker] /home/nathferr/VenU/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:13-63
+52            android:authorities="com.venu.imagepickerprovider"
+52-->[:react-native-image-picker] /home/nathferr/VenU/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:10:13-71
+53            android:exported="false"
+53-->[:react-native-image-picker] /home/nathferr/VenU/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:11:13-37
+54            android:grantUriPermissions="true" >
+54-->[:react-native-image-picker] /home/nathferr/VenU/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:12:13-47
+55            <meta-data
+55-->[:react-native-image-picker] /home/nathferr/VenU/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:13:13-15:70
+56                android:name="android.support.FILE_PROVIDER_PATHS"
+56-->[:react-native-image-picker] /home/nathferr/VenU/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:14:17-67
+57                android:resource="@xml/imagepicker_provider_paths" />
+57-->[:react-native-image-picker] /home/nathferr/VenU/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:15:17-67
+58        </provider>
+59
+60        <activity
+60-->[com.facebook.react:react-android:0.75.4] /home/nathferr/.gradle/caches/8.8/transforms/d7707abf8a129cea02d85e737debfd11/transformed/jetified-react-android-0.75.4-debug/AndroidManifest.xml:19:9-21:40
+61            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+61-->[com.facebook.react:react-android:0.75.4] /home/nathferr/.gradle/caches/8.8/transforms/d7707abf8a129cea02d85e737debfd11/transformed/jetified-react-android-0.75.4-debug/AndroidManifest.xml:20:13-77
+62            android:exported="false" />
+62-->[com.facebook.react:react-android:0.75.4] /home/nathferr/.gradle/caches/8.8/transforms/d7707abf8a129cea02d85e737debfd11/transformed/jetified-react-android-0.75.4-debug/AndroidManifest.xml:21:13-37
+63
+64        <provider
+64-->[androidx.emoji2:emoji2:1.2.0] /home/nathferr/.gradle/caches/8.8/transforms/2687911a1f582a3848ef7c63c2bb9dab/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+65            android:name="androidx.startup.InitializationProvider"
+65-->[androidx.emoji2:emoji2:1.2.0] /home/nathferr/.gradle/caches/8.8/transforms/2687911a1f582a3848ef7c63c2bb9dab/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+66            android:authorities="com.venu.androidx-startup"
+66-->[androidx.emoji2:emoji2:1.2.0] /home/nathferr/.gradle/caches/8.8/transforms/2687911a1f582a3848ef7c63c2bb9dab/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+67            android:exported="false" >
+67-->[androidx.emoji2:emoji2:1.2.0] /home/nathferr/.gradle/caches/8.8/transforms/2687911a1f582a3848ef7c63c2bb9dab/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+68            <meta-data
+68-->[androidx.emoji2:emoji2:1.2.0] /home/nathferr/.gradle/caches/8.8/transforms/2687911a1f582a3848ef7c63c2bb9dab/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+69                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+69-->[androidx.emoji2:emoji2:1.2.0] /home/nathferr/.gradle/caches/8.8/transforms/2687911a1f582a3848ef7c63c2bb9dab/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+70                android:value="androidx.startup" />
+70-->[androidx.emoji2:emoji2:1.2.0] /home/nathferr/.gradle/caches/8.8/transforms/2687911a1f582a3848ef7c63c2bb9dab/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+71            <meta-data
+71-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/nathferr/.gradle/caches/8.8/transforms/651818686ce7a0b3e4e9300702ba9b6f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+72                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+72-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/nathferr/.gradle/caches/8.8/transforms/651818686ce7a0b3e4e9300702ba9b6f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+73                android:value="androidx.startup" />
+73-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/nathferr/.gradle/caches/8.8/transforms/651818686ce7a0b3e4e9300702ba9b6f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+74        </provider>
+75
+76        <meta-data
+76-->[com.facebook.soloader:soloader:0.11.0] /home/nathferr/.gradle/caches/8.8/transforms/ee18808d9da50e7f498e5a6bb913df21/transformed/jetified-soloader-0.11.0/AndroidManifest.xml:12:9-14:37
+77            android:name="com.facebook.soloader.enabled"
+77-->[com.facebook.soloader:soloader:0.11.0] /home/nathferr/.gradle/caches/8.8/transforms/ee18808d9da50e7f498e5a6bb913df21/transformed/jetified-soloader-0.11.0/AndroidManifest.xml:13:13-57
+78            android:value="false" />
+78-->[com.facebook.soloader:soloader:0.11.0] /home/nathferr/.gradle/caches/8.8/transforms/ee18808d9da50e7f498e5a6bb913df21/transformed/jetified-soloader-0.11.0/AndroidManifest.xml:14:13-34
+79    </application>
+80
+81</manifest>
