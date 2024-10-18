@@ -1,17 +1,23 @@
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeScreen from './screens/HomeScreen';
 import ArtistScreen from './screens/ArtistScreen';
 import VenueScreen from './screens/VenueScreen';
+import LoginScreen from './screens/LoginScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
+import SettingsModal from './screens/SettingsModal';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+// Mock authentication state for demo purposes
+const isLoggedIn = false; // You can replace this with real authentication logic
 
 // Custom App Logo Component for Header Left
 function AppLogo({ navigation }) {
@@ -19,11 +25,25 @@ function AppLogo({ navigation }) {
     <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
       <View style={styles.logoContainer}>
         <Image
-          source={require('./images/logo.png')} // Replace with your actual logo path
-          style={styles.logo} // Customize size and positioning
+          source={require('./images/logo.png')} 
+          style={styles.logo} 
           resizeMode="contain"
         />
       </View>
+    </TouchableOpacity>
+  );
+}
+
+// Component for the settings icon in the header
+function HeaderRightSettings({ navigation }) {
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('SettingsModal')}>
+      <Ionicons 
+        name="settings" 
+        size={28} // Adjust the size of the gear icon here
+        color="#e4d1ff" 
+        style={styles.gearIcon} // Apply custom styles for positioning
+      />
     </TouchableOpacity>
   );
 }
@@ -35,7 +55,7 @@ function HomeStack() {
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerShown: false }} // Hides the stack header
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
@@ -48,7 +68,7 @@ function ArtistStack() {
       <Stack.Screen
         name="ArtistScreen"
         component={ArtistScreen}
-        options={{ headerShown: false }} // Hides the stack header
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
@@ -61,7 +81,7 @@ function VenueStack() {
       <Stack.Screen
         name="VenueScreen"
         component={VenueScreen}
-        options={{ headerShown: false }} // Hides the stack header
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
@@ -74,105 +94,134 @@ function BottomTabs() {
       screenOptions={({ route, navigation }) => ({
         tabBarIcon: ({ focused }) => {
           let iconName;
-          let iconSize = focused ? 60 : 50; // Customize size for focused and unfocused icons
+          let iconSize = focused ? 60 : 50;
 
-          // Set icons based on route names using Ionicons
           if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home-outline'; // Correct Ionicons names
+            iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Artist') {
-            iconName = focused ? 'heart' : 'heart-outline'; // Correct Ionicons names
+            iconName = focused ? 'heart' : 'heart-outline';
           } else if (route.name === 'Venue') {
-            iconName = focused ? 'person' : 'person-outline'; // Correct Ionicons names
+            iconName = focused ? 'person' : 'person-outline';
           }
 
-          // Return the Ionicon component with dynamic size
           return <Ionicons name={iconName} size={iconSize} color={focused ? 'purple' : 'white'} />;
         },
-        tabBarShowLabel: false, // Remove labels under the icons
+        tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: '#e4d1ff', // Light purple background for the bottom tab bar
+          backgroundColor: '#e4d1ff',
           height: 80,
         },
-        tabBarActiveTintColor: 'white', // Color for focused icons
-        tabBarInactiveTintColor: 'black', // Color for unfocused icons
-        headerLeft: () => <AppLogo navigation={navigation} />, // Make logo clickable
+        tabBarActiveTintColor: 'white',
+        tabBarInactiveTintColor: 'black',
+        headerLeft: () => <AppLogo navigation={navigation} />,
         headerStyle: {
-          backgroundColor: 'black', // Keep the current background color
-          height: 160, // Set the height of the header
+          backgroundColor: 'black',
+          height: 160,
         },
-        headerTintColor: '#fff', // Keep the white text color
+        headerTintColor: '#fff',
       })}
     >
       <Tab.Screen
         name="Home"
         component={HomeStack}
         options={{
-          headerTitle: '', // Set title for Home screen
-          headerTitleAlign: 'center', // Center the title
+          headerTitle: '',
+          headerTitleAlign: 'center',
           headerTitleStyle: {
-             fontSize: 28,  // Adjust the font size
-             fontWeight: 'bold',  // Set the font weight
-             color: '#e4d1ff',  // Change the color to white
-           },
+            fontSize: 28,
+            fontWeight: 'bold',
+            color: '#e4d1ff',
+          },
         }}
       />
       <Tab.Screen
         name="Artist"
         component={ArtistStack}
         options={{
-          headerTitle: 'Favorites', // Set title for Artist screen
-          headerTitleAlign: 'center', // Center the title
+          headerTitle: 'Favorites',
+          headerTitleAlign: 'center',
           headerTitleStyle: {
-             fontSize: 28,  // Adjust the font size
-             fontWeight: 'bold',  // Set the font weight
-             color: '#e4d1ff',  // Change the color to white
-             paddingLeft: 40,
-           },
+            fontSize: 28,
+            fontWeight: 'bold',
+            color: '#e4d1ff',
+            paddingLeft: 40,
+          },
         }}
       />
       <Tab.Screen
         name="Venue"
         component={VenueStack}
-        options={{
-          headerTitle: 'My Account', // Set title for Venue screen
-          headerTitleAlign: 'center', // Center the title
+        options={({ navigation }) => ({
+          headerTitle: 'My Account',
+          headerTitleAlign: 'center',
           headerTitleStyle: {
-             fontSize: 28,  // Adjust the font size
-             fontWeight: 'bold',  // Set the font weight
-             color: '#e4d1ff',  // Change the color to white
-             paddingLeft: 40,
-           },
-        }}
+            fontSize: 28,
+            fontWeight: 'bold',
+            color: '#e4d1ff',
+            paddingLeft: 40,
+          },
+          headerRight: () => <HeaderRightSettings navigation={navigation} />, // Place the gear icon directly in the Tab.Screen
+        })}
       />
     </Tab.Navigator>
   );
 }
 
-
-// Main App with NavigationContainer and only BottomTabs
-export default function App() {
+// Main App with Welcome, Login, and Main Flow
+function App() {
   return (
     <NavigationContainer>
-      <BottomTabs />
+      <Stack.Navigator initialRouteName={isLoggedIn ? "Main" : "Welcome"}>
+        <Stack.Screen 
+          name="Welcome" 
+          component={WelcomeScreen} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Login" 
+          component={LoginScreen} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Main" 
+          component={BottomTabs} 
+          options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="SettingsModal" 
+          component={SettingsModal} 
+          options={{
+            presentation: 'modal', // Updated syntax for modal presentation
+            headerShown: false,
+            cardStyle: { backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+          }} 
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-// Global Styles (can be used for other screen components)
+export default App;
+
+// Global Styles
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    backgroundColor: 'black', // Black background for all screens
+    backgroundColor: 'black',
   },
   logoContainer: {
-    paddingLeft: 0, // Add some padding to keep it from the left edge
+    paddingLeft: 0,
   },
   headerTitleStyle: {
-    paddingLeft: 40, // Further shift the title to the right
+    paddingLeft: 40,
   },
   logo: {
     width: 148,
     height: 117,
+  },
+  gearIcon: {
+    marginLeft: 20, // Adjust this value to move the gear icon left or right
+    marginTop: 5, // Adjust this value to move the gear icon up or down
   },
 });
 
