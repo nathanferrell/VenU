@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
-import React from 'react';
+import SplashScreen from 'react-native-splash-screen';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -110,48 +111,54 @@ function BottomTabs() {
                 options={{ headerTitle: '' }}
             />
             <Tab.Screen
-    name="Favorites"
-    component={FavoritesStack}
-    options={{
-        headerTitle: 'Favorites',
-        headerTitleStyle: {
-            fontSize: 28,
-            fontWeight: 'bold',
-            color: '#e4d1ff',
-        },
-        headerLeftContainerStyle: {
-            paddingLeft: 10, // Reduce padding to bring the title closer
-        },
-        headerTitleContainerStyle: {
-            paddingLeft: 0, // Adjust to center the title better
-        },
-    }}
-/>
-<Tab.Screen
-    name="Venue"
-    component={VenueStack}
-    options={({ navigation }) => ({
-        headerTitle: 'My Account',
-        headerTitleStyle: {
-            fontSize: 28,
-            fontWeight: 'bold',
-            color: '#e4d1ff',
-        },
-        headerLeftContainerStyle: {
-            paddingLeft: 0, // Reduce padding to balance the title position
-        },
-        headerTitleContainerStyle: {
-            paddingLeft: 0, // Adjust to center the title better
-        },
-        headerRight: () => <HeaderRightSettings navigation={navigation} />,
-    })}
-/>
-
+                name="Favorites"
+                component={FavoritesStack}
+                options={{
+                    headerTitle: 'Favorites',
+                    headerTitleStyle: {
+                        fontSize: 28,
+                        fontWeight: 'bold',
+                        color: '#e4d1ff',
+                    },
+                    headerLeftContainerStyle: {
+                        paddingLeft: 10, // Reduce padding to bring the title closer
+                    },
+                    headerTitleContainerStyle: {
+                        paddingLeft: 0, // Adjust to center the title better
+                    },
+                }}
+            />
+            <Tab.Screen
+                name="Venue"
+                component={VenueStack}
+                options={({ navigation }) => ({
+                    headerTitle: 'My Account',
+                    headerTitleStyle: {
+                        fontSize: 28,
+                        fontWeight: 'bold',
+                        color: '#e4d1ff',
+                    },
+                    headerLeftContainerStyle: {
+                        paddingLeft: 0, // Reduce padding to balance the title position
+                    },
+                    headerTitleContainerStyle: {
+                        paddingLeft: 0, // Adjust to center the title better
+                    },
+                    headerRight: () => <HeaderRightSettings navigation={navigation} />,
+                })}
+            />
         </Tab.Navigator>
     );
 }
 
 function App() {
+    useEffect(() => {
+        // Hide the splash screen after everything is ready
+        setTimeout(() => {
+            SplashScreen.hide();
+        }, 1000); // Adding a delay to ensure everything is fully loaded before hiding the splash screen
+    }, []);
+
     return (
         <FavoritesProvider>
             <NavigationContainer>

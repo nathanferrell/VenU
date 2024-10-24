@@ -1,23 +1,29 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import GestureRecognizer from 'react-native-swipe-gestures';
+import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 import { useNavigation } from '@react-navigation/native';
 
 const VenueScreen = () => {
     const navigation = useNavigation();
 
-    const onSwipeRight = () => {
-        navigation.navigate('Favorites');
+    const onSwipe = (gestureName) => {
+        const { SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
+        if (gestureName === SWIPE_LEFT) {
+            navigation.navigate('Home'); // Match this with the tab name in App.tsx
+        } else if (gestureName === SWIPE_RIGHT) {
+            navigation.navigate('Favorites'); // Match this with the tab name in App.tsx
+        }
     };
 
-    const onSwipeLeft = () => {
-        navigation.navigate('Home');
+    const config = {
+        velocityThreshold: 0.3,
+        directionalOffsetThreshold: 80,
     };
 
     return (
         <GestureRecognizer
-            onSwipeRight={onSwipeRight}
-            onSwipeLeft={onSwipeLeft}
+            onSwipe={(direction) => onSwipe(direction)}
+            config={config}
             style={styles.container}
         >
             <View>
