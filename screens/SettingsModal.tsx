@@ -22,6 +22,8 @@ const SettingsModal = ({ navigation }) => {
         <Modal
             isVisible={isVisible}
             onBackdropPress={handleClose}
+            onSwipeComplete={handleClose}
+            swipeDirection="down"
             style={styles.modal}
             animationIn="slideInUp"
             animationOut="slideOutDown"

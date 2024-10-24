@@ -1,7 +1,8 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import React, { useRef } from 'react';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, FlatList, PanResponder, Animated } from 'react-native';
 import { useFavorites } from './FavoritesContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 // Card component with a heart icon for adding or removing from favorites
 const Card = ({ item, type }: { item: { id: string; title: string }; type: string }) => {
@@ -31,6 +32,24 @@ const Card = ({ item, type }: { item: { id: string; title: string }; type: strin
 };
 
 const HomeScreen = () => {
+    const navigation = useNavigation();
+    const pan = useRef(new Animated.ValueXY()).current;
+
+    const panResponder = useRef(
+        PanResponder.create({
+            onMoveShouldSetPanResponder: (evt, gestureState) => {
+                return Math.abs(gestureState.dx) > Math.abs(gestureState.dy);
+            },
+            onPanResponderRelease: (evt, gestureState) => {
+                if (gestureState.dx < -50) {
+                    navigation.navigate('Favorites');
+                } else if (gestureState.dx > 50) {
+                    navigation.navigate('Venue');
+                }
+            },
+        })
+    ).current;
+
     // Placeholder data for each section
     const recentData = [
         { id: '1', title: 'Recent 1' },
@@ -55,46 +74,51 @@ const HomeScreen = () => {
     );
 
     return (
-        <ScrollView style={styles.container}>
-            {/* Recent Section */}
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Recent</Text>
-                <FlatList
-                    data={recentData}
-                    renderItem={({ item }) => renderCard({ item, type: 'recent' })}
-                    keyExtractor={(item) => item.id}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    style={styles.horizontalScroll}
-                />
-            </View>
+        <Animated.View
+            {...panResponder.panHandlers}
+            style={{ flex: 1, backgroundColor: 'black' }}
+        >
+            <ScrollView style={styles.container}>
+                {/* Recent Section */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Recent</Text>
+                    <FlatList
+                        data={recentData}
+                        renderItem={({ item }) => renderCard({ item, type: 'recent' })}
+                        keyExtractor={(item) => item.id}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        style={styles.horizontalScroll}
+                    />
+                </View>
 
-            {/* Upcoming Section */}
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Upcoming</Text>
-                <FlatList
-                    data={upcomingData}
-                    renderItem={({ item }) => renderCard({ item, type: 'upcoming' })}
-                    keyExtractor={(item) => item.id}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    style={styles.horizontalScroll}
-                />
-            </View>
+                {/* Upcoming Section */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Upcoming</Text>
+                    <FlatList
+                        data={upcomingData}
+                        renderItem={({ item }) => renderCard({ item, type: 'upcoming' })}
+                        keyExtractor={(item) => item.id}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        style={styles.horizontalScroll}
+                    />
+                </View>
 
-            {/* Venues Section */}
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Venues</Text>
-                <FlatList
-                    data={venuesData}
-                    renderItem={({ item }) => renderCard({ item, type: 'venue' })}
-                    keyExtractor={(item) => item.id}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    style={styles.horizontalScroll}
-                />
-            </View>
-        </ScrollView>
+                {/* Venues Section */}
+                <View style={styles.section}>
+                    <Text style={styles.sectionTitle}>Venues</Text>
+                    <FlatList
+                        data={venuesData}
+                        renderItem={({ item }) => renderCard({ item, type: 'venue' })}
+                        keyExtractor={(item) => item.id}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        style={styles.horizontalScroll}
+                    />
+                </View>
+            </ScrollView>
+        </Animated.View>
     );
 };
 
