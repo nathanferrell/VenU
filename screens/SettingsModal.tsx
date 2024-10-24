@@ -1,41 +1,66 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import Modal from 'react-native-modal';
 
 const SettingsModal = ({ navigation }) => {
-  const handleSignOut = () => {
-    // Logic for signing out, such as clearing user data
-    navigation.replace('Welcome');
-  };
+    const [isVisible, setIsVisible] = useState(true);
 
-  return (
-    <View style={styles.modalContainer}>
-      <TouchableOpacity style={styles.signOutButton} onPress={handleSignOut}>
-        <Text style={styles.buttonText}>Sign Out</Text>
-      </TouchableOpacity>
-    </View>
-  );
+    const handleSignOut = () => {
+        setIsVisible(false);
+        navigation.reset({
+            index: 0,
+            routes: [{ name: 'Welcome' }],
+        });
+    };
+
+    const handleClose = () => {
+        setIsVisible(false);
+        navigation.goBack();
+    };
+
+    return (
+        <Modal
+            isVisible={isVisible}
+            onBackdropPress={handleClose}
+            style={styles.modal}
+            animationIn="slideInUp"
+            animationOut="slideOutDown"
+        >
+            <View style={styles.modalContent}>
+                <Text style={styles.modalTitle}>Settings</Text>
+                <View style={styles.buttonContainer}>
+                    <Button title="Sign Out" color="#9363f4" onPress={handleSignOut} />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <Button title="Close" color="#9363f4" onPress={handleClose} />
+                </View>
+            </View>
+        </Modal>
+    );
 };
 
 const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Translucent black background
-  },
-  signOutButton: {
-    backgroundColor: '#FF5722', // Button color
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 25,
-    alignItems: 'center',
-    marginTop: 16,
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#FFFFFF', // White text color
-    fontWeight: 'bold',
-  },
+    modal: {
+        justifyContent: 'flex-end',
+        margin: 0,
+    },
+    modalContent: {
+        backgroundColor: 'white',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        padding: 30,
+        height: '50%',
+    },
+    modalTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        color: '#9363f4',
+    },
+    buttonContainer: {
+        marginVertical: 10,
+    },
 });
 
 export default SettingsModal;
+
