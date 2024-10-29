@@ -8,8 +8,18 @@ Make sure to manually create node modules and app-debug.apk and install/copy the
 
 
 Make sure to create the following files:
-App.tsx, 
-All of the /screens directory, 
-All of the /images directory, 
-babel.config.js, 
-all of /android/app/src/main/res/*
+App.tsx  
+
+All of the /screens directory  
+
+All of the /images directory  
+
+babel.config.js  
+
+all of /android/app/src/main/res/*  
+
+/android/app/src/main/AndroidManifest.xml  
+
+/android/app/src/main/java/com/venu/MainActivity.kt  
+
+/android/app/src/main/res/values/styles.xml
