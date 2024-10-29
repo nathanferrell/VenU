@@ -7,7 +7,8 @@ npm install react react-native @react-navigation/native @react-navigation/stack 
 Make sure to manually create node modules and app-debug.apk and install/copy them into their respective directories.
 
 
-Make sure to create the following files:
+Make sure to create the following files:  
+
 App.tsx  
 
 All of the /screens directory  
