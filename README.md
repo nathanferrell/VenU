@@ -8,8 +8,8 @@ Make sure to manually create node modules and app-debug.apk and install/copy the
 
 
 Make sure to create the following files:
-App.tsx
-All of the /screens directory
-All of the /images directory
-babel.config.js
+App.tsx, 
+All of the /screens directory, 
+All of the /images directory, 
+babel.config.js, 
 all of /android/app/src/main/res/*
