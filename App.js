@@ -24,12 +24,15 @@ function AppLogo({ navigation }) {
     return (
         <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
             <View style={styles.logoContainer}>
-                <Image source={require('./images/logo.png')} style={styles.logo} resizeMode="contain" />
+                <Image
+                    source={require('./images/logo.png')}
+                    style={[styles.logo, { width: 100, height: 100 }]} // Adjust the width and height here
+                    resizeMode="contain"
+                />
             </View>
         </TouchableOpacity>
     );
 }
-
 function HeaderRightSettings({ navigation }) {
     return (
         <TouchableOpacity onPress={() => navigation.navigate('SettingsModal')}>
@@ -81,6 +84,7 @@ function BottomTabs() {
                 tabBarIcon: ({ focused }) => {
                     let iconName;
                     let iconSize = focused ? 60 : 50;
+                    let iconColor = '#e4d1ff'; // Change this line
 
                     if (route.name === 'Home') {
                         iconName = focused ? 'home' : 'home-outline';
@@ -90,12 +94,12 @@ function BottomTabs() {
                         iconName = focused ? 'person' : 'person-outline';
                     }
 
-                    return <Ionicons name={iconName} size={iconSize} color={focused ? 'purple' : 'white'} />;
+                    return <Ionicons name={iconName} size={iconSize} color={iconColor} />;
                 },
                 tabBarShowLabel: false,
                 tabBarStyle: {
-                    backgroundColor: '#e4d1ff',
-                    height: 80,
+                    backgroundColor: '#4D4D4D',
+                    height: 70,
                 },
                 headerLeft: () => <AppLogo navigation={navigation} />,
                 headerStyle: {
