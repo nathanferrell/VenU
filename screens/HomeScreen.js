@@ -50,29 +50,23 @@ const HomeScreen = () => {
         })
     ).current;
 
-    // Placeholder data for each section
-    const recentData = [
-        { id: '1', title: 'Recent 1' },
-        { id: '2', title: 'Recent 2' },
-        { id: '3', title: 'Recent 3' },
-    ];
+    // Load data from the JSON files
+    const concerts = require('../data/concerts.json');
+    const venues = require('../data/venues.json');
+    const artists = require('../data/artists.json');
 
-    const upcomingData = [
-        { id: '4', title: 'Upcoming 1' },
-        { id: '5', title: 'Upcoming 2' },
-        { id: '6', title: 'Upcoming 3' },
-    ];
+    // Filter upcoming concerts (if needed)
+    const upcomingData = concerts.filter(concert => new Date(concert.date) > new Date());
 
-    const venuesData = [
-        { id: '7', title: 'Venue 1' },
-        { id: '8', title: 'Venue 2' },
-        { id: '9', title: 'Venue 3' },
-    ];
+    // Limit to the first 3 items for each section
+    const limitedRecentData = concerts.slice(0, 3);
+    const limitedUpcomingData = upcomingData.slice(0, 3);
+    const limitedVenuesData = venues.slice(0, 3);
 
+    // Render each section card
     const renderCard = ({ item, type }: { item: { id: string; title: string }, type: string }) => (
         <Card item={item} type={type} />
     );
-
     return (
         <Animated.View
             {...panResponder.panHandlers}
@@ -81,10 +75,12 @@ const HomeScreen = () => {
             <ScrollView style={styles.container}>
                 {/* Recent Section */}
                 <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>Recent</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('RecentConcerts')}>
+                        <Text style={styles.sectionTitle}>Recent</Text>
+                    </TouchableOpacity>
                     <FlatList
-                        data={recentData}
-                        renderItem={({ item }) => renderCard({ item, type: 'recent' })}
+                        data={limitedRecentData}  // Limit to 3 items
+                        renderItem={({ item }) => renderCard({ item: { id: item.id, title: item.name }, type: 'recent' })}
                         keyExtractor={(item) => item.id}
                         horizontal
                         showsHorizontalScrollIndicator={false}
@@ -94,10 +90,12 @@ const HomeScreen = () => {
 
                 {/* Upcoming Section */}
                 <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>Upcoming</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('UserArtists')}>
+                        <Text style={styles.sectionTitle}>Upcoming</Text>
+                    </TouchableOpacity>
                     <FlatList
-                        data={upcomingData}
-                        renderItem={({ item }) => renderCard({ item, type: 'upcoming' })}
+                        data={limitedUpcomingData}  // Limit to 3 items
+                        renderItem={({ item }) => renderCard({ item: { id: item.id, title: item.name }, type: 'upcoming' })}
                         keyExtractor={(item) => item.id}
                         horizontal
                         showsHorizontalScrollIndicator={false}
@@ -107,10 +105,12 @@ const HomeScreen = () => {
 
                 {/* Venues Section */}
                 <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>Venues</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('UserVenues')}>
+                        <Text style={styles.sectionTitle}>Venues</Text>
+                    </TouchableOpacity>
                     <FlatList
-                        data={venuesData}
-                        renderItem={({ item }) => renderCard({ item, type: 'venue' })}
+                        data={limitedVenuesData}  // Limit to 3 items
+                        renderItem={({ item }) => renderCard({ item: { id: item.id, title: item.name }, type: 'venue' })}
                         keyExtractor={(item) => item.id}
                         horizontal
                         showsHorizontalScrollIndicator={false}
@@ -150,7 +150,9 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     cardText: {
+        color: '#9e5bff',
         fontSize: 16,
+        marginTop: 10
     },
 });
 
