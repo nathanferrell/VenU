@@ -1,0 +1,38 @@
+[
+    {
+      "id": "1",
+      "name": "Riviera Theatre",
+      "location": "Chicago, IL",
+      "address": "4746 N Racine Ave, Chicago, IL 60640",
+      "capacity": 2500
+    },
+    {
+      "id": "2",
+      "name": "Aragon Ballroom",
+      "location": "Chicago, IL",
+      "address": "1106 W Lawrence Ave, Chicago, IL 60640",
+      "capacity": 5000
+    },
+    {
+      "id": "3",
+      "name": "House of Blues",
+      "location": "Chicago, IL",
+      "address": "329 N Dearborn St, Chicago, IL 60654",
+      "capacity": 1300
+    },
+    {
+      "id": "4",
+      "name": "Chicago Theatre",
+      "location": "Chicago, IL",
+      "address": "175 N State St, Chicago, IL 60601",
+      "capacity": 3600
+    },
+    {
+      "id": "5",
+      "name": "United Center",
+      "location": "Chicago, IL",
+      "address": "1901 W Madison St, Chicago, IL 60612",
+      "capacity": 23000
+    }
+  ]
+  

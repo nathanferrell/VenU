@@ -1,0 +1,37 @@
+[
+    {
+      "id": "1",
+      "name": "Billie Eilish Live",
+      "date": "2024-12-01",
+      "venueId": "1",
+      "artistIds": ["1"]
+    },
+    {
+      "id": "2",
+      "name": "Remi Wolf in Concert",
+      "date": "2024-12-05",
+      "venueId": "2",
+      "artistIds": ["2"]
+    },
+    {
+      "id": "3",
+      "name": "Rainbow Kitten Surprise Show",
+      "date": "2024-12-10",
+      "venueId": "3",
+      "artistIds": ["3"]
+    },
+    {
+      "id": "4",
+      "name": "Yebba's Night",
+      "date": "2024-12-15",
+      "venueId": "4",
+      "artistIds": ["4"]
+    },
+    {
+      "id": "5",
+      "name": "Billie Eilish at United Center",
+      "date": "2024-12-20",
+      "venueId": "5",
+      "artistIds": ["1"]
+    }
+  ]
