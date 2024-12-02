@@ -1,11 +1,15 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground } from 'react-native';
 
 const WelcomeScreen = ({ navigation }) => {
   return (
+  <ImageBackground
+              source={require('../images/loginpage.png')}
+              style={styles.container}
+            >
     <View style={styles.container}>
       <Image 
-        source={require('../images/logo.png')} // Adjust the path based on your project structure
+        source={require('../images/logo.png')} 
         style={styles.logo}
         resizeMode="contain"
       />
@@ -24,6 +28,7 @@ const WelcomeScreen = ({ navigation }) => {
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -32,7 +37,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black', // Set background color to black
     padding: 16,
   },
   logo: {
