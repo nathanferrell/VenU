@@ -1,7 +1,21 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 const LoginScreen = ({ navigation }) => {
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={24} color="#9363f4" style={{ paddingLeft: 10,
+            justifyContent: 'center', 
+            alignItems: 'center',
+           backgroundColor: 'transparent', }} />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,18 +29,22 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
+  <ImageBackground
+        source={require('/Users/laila/Downloads/VenU2/images/loginpage.png')}
+        style={styles.container}
+      >
     <View style={styles.container}>
       <Text style={styles.title}></Text>
       <TextInput
         placeholder="Username"
-        placeholderTextColor="#888" // Placeholder color
+        placeholderTextColor="#888" 
         value={username}
         onChangeText={setUsername}
         style={styles.input}
       />
       <TextInput
         placeholder="Password"
-        placeholderTextColor="#888" // Placeholder color
+        placeholderTextColor="#888" 
         value={password}
         onChangeText={setPassword}
         style={styles.input}
@@ -36,34 +54,35 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#000000', // Background color of the screen
-    padding: 16,
-  },
+     flex: 1,
+     justifyContent: 'center',
+     alignItems: 'center',
+   },
   title: {
     fontSize: 24,
-    color: '#9363f4', // Title text color
+    color: '#9363f4',
     marginBottom: 16,
   },
   input: {
-    width: '100%',
-    padding: 10,
+    width: '80%',
+    height: 60,
+    padding: 15,
+    fontSize: 14,
     borderWidth: 1,
-    borderColor: '#9363f4', // Border color of input fields
-    backgroundColor: '#333333', // Background color of input fields
-    color: '#FFFFFF', // Text color of input fields
+    borderColor: '#9363f4', 
+    backgroundColor: '#333333', 
+    color: '#FFFFFF', 
     marginBottom: 16,
     borderRadius: 4,
   },
   loginButton: {
-    backgroundColor: '#9363f4', // Background color of the button
+    backgroundColor: '#9363f4', 
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 25,
@@ -73,7 +92,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#FFFFFF', // Text color of the button
+    color: '#FFFFFF', 
     fontWeight: 'bold',
   },
 });
