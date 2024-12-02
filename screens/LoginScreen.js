@@ -30,7 +30,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
   <ImageBackground
-        source={require('/Users/laila/Downloads/VenU2/images/loginpage.png')}
+        source={require('../images/loginpage.png')}
         style={styles.container}
       >
     <View style={styles.container}>
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
      flex: 1,
      justifyContent: 'center',
      alignItems: 'center',
+     width: '100%',
    },
   title: {
     fontSize: 24,

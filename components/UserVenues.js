@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import Card from './Card';
-import { commonStyles } from '../styles/styles';
+import { commonStyles } from '../styles';
 const venues = require('../data/venues.json');
 
 const Venues = () => (

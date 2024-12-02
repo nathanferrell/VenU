@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import Card from './Card';
-import { commonStyles } from '../styles/styles';
+import { commonStyles } from '../styles';
 const artists = require('../data/artists.json');
 import { useNavigation } from '@react-navigation/native';
 
