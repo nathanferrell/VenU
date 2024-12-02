@@ -14,6 +14,12 @@ import LoginScreen from './screens/LoginScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import SettingsModal from './screens/SettingsModal';
 import { FavoritesProvider } from './screens/FavoritesContext';
+import UserArtists from './components/UserArtists.js';
+import FavoriteArtists from './components/UserArtists.js';
+import RecentConcerts from './components/RecentConcerts.js';
+import UserVenues from './components/UserVenues';
+import ArtistDetails from './screens/ArtistDetails';
+import { appStyles } from './styles/styles.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -168,8 +174,14 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator initialRouteName={isLoggedIn ? "Main" : "Welcome"}>
                     <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
-                    <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: true,
+                                            headerTitle: 'Back' }} />
                     <Stack.Screen name="Main" component={BottomTabs} options={{ headerShown: false }} />
+                   <Stack.Screen name="UserArtists" component={UserArtists} />
+                   <Stack.Screen name="FavoriteArtists" component={FavoriteArtists} />
+                  <Stack.Screen name="ArtistDetails" component={ArtistDetails} />
+                   <Stack.Screen name="RecentConcerts" component={RecentConcerts} />
+                   <Stack.Screen name="UserVenues" component={UserVenues} />
                     <Stack.Screen
                         name="SettingsModal"
                         component={SettingsModal}
