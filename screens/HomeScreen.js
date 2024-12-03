@@ -60,7 +60,7 @@ const HomeScreen = () => {
 
     // Limit to the first 3 items for each section
     const limitedRecentData = concerts.slice(0, 3);
-    const limitedUpcomingData = upcomingData.slice(0, 3);
+    const limitedUpcomingData = upcomingConcerts.slice(0, 3);
     const limitedVenuesData = venues.slice(0, 3);
 
     // Render each section card
