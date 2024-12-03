@@ -55,8 +55,7 @@ const HomeScreen = () => {
     const venues = require('../data/venues.json');
     const artists = require('../data/artists.json');
 
-    // Filter upcoming concerts (if needed)
-    const upcomingData = concerts.filter(concert => new Date(concert.date) > new Date());
+
 
     // Limit to the first 3 items for each section
     const limitedRecentData = concerts.slice(0, 3);
@@ -88,20 +87,20 @@ const HomeScreen = () => {
                     />
                 </View>
 
-                {/* Upcoming Section */}
-                <View style={styles.section}>
-                    <TouchableOpacity onPress={() => navigation.navigate('UserArtists')}>
-                        <Text style={styles.sectionTitle}>Upcoming</Text>
-                    </TouchableOpacity>
-                    <FlatList
-                        data={limitedUpcomingData}  // Limit to 3 items
-                        renderItem={({ item }) => renderCard({ item: { id: item.id, title: item.name }, type: 'upcoming' })}
-                        keyExtractor={(item) => item.id}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        style={styles.horizontalScroll}
-                    />
-                </View>
+        {/* Upcoming Section */}
+                            <View style={styles.section}>
+                                <TouchableOpacity onPress={() => navigation.navigate('UserArtists')}>
+                                    <Text style={styles.sectionTitle}>Upcoming</Text>
+                                </TouchableOpacity>
+                                <FlatList
+                                   data={limitedUpcomingData}  // Use upcomingConcerts.json data
+                                    renderItem={({ item }) => renderCard({ item: { id: item.id, title: item.name }, type: 'upcoming' })}
+                                    keyExtractor={(item) => item.id}
+                                    horizontal
+                                    showsHorizontalScrollIndicator={false}
+                                    style={styles.horizontalScroll}
+                                />
+                            </View>
 
                 {/* Venues Section */}
                 <View style={styles.section}>
