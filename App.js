@@ -133,18 +133,17 @@ function BottomTabs() {
                         fontWeight: 'bold',
                         textAlign: 'center',
                         color: '#d1a7ff',
-                        textAlign: 'center',  // Ensures title text is centered horizontally
-                        marginLeft: 'auto',   // Centers the title by pushing it towards the middle
+                        textAlign: 'center',  
+                        marginLeft: 'auto',   
                         marginRight: 'auto',
-                        
                     },
                     headerLeftContainerStyle: {
-                        paddingLeft: 20, // Reduce padding to bring the title closer
+                        paddingLeft: 20, 
                     },
                     headerTitleContainerStyle: {
-                        alignItems: 'center', // Centers the title container
-                        justifyContent: 'center', // Ensures the title container is centered vertically
-                        flex: 1, // Adjust to center the title better
+                        alignItems: 'center', 
+                        justifyContent: 'center', 
+                        flex: 1, 
                     },
                 }}
             />
@@ -158,18 +157,18 @@ function BottomTabs() {
                         fontWeight: 'bold',
                         textAlign: 'center',
                         color: '#d1a7ff',
-                        textAlign: 'center',  // Ensures title text is centered horizontally
-                        marginLeft: 'auto',   // Centers the title by pushing it towards the middle
+                        textAlign: 'center',  
+                        marginLeft: 'auto',   
                         marginRight: 'auto',
                         paddingLeft: 10,
                     },
                     headerLeftContainerStyle: {
-                        paddingLeft: 20, // Reduce padding to bring the title closer
+                        paddingLeft: 20, 
                     },
                     headerTitleContainerStyle: {
-                        alignItems: 'center', // Centers the title container
-                        justifyContent: 'center', // Ensures the title container is centered vertically
-                        flex: 1, // Adjust to center the title better
+                        alignItems: 'center', 
+                        justifyContent: 'center', 
+                        flex: 1, 
                     },
                     headerRight: () => <HeaderRightSettings navigation={navigation} />,
                 })}
