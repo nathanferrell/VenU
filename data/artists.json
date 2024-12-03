@@ -54,5 +54,77 @@
       "photos": [
         "https://flic.kr/p/2nezAUZ"
       ]
-    }
+    },
+  {
+    "id": "5",
+    "name": "My Chemical Romance",
+    "genre": "Rock",
+    "photoUrl": " ",
+    "bio": "MCR makes great music",
+    "reviews": [
+      { "author": "John Doe", "text": "Amazing performance!" },
+      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
+    ],
+    "photos": [
+      " "
+    ]
+  },
+  {
+    "id": "6",
+    "name": "The Smiths",
+    "genre": "Rock",
+    "photoUrl": " ",
+    "bio": "The Smiths make great music",
+    "reviews": [
+      { "author": "John Doe", "text": "Amazing performance!" },
+      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
+    ],
+    "photos": [
+      " "
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Cage the Elephant",
+    "genre": "Rock",
+    "photoUrl": " ",
+    "bio": "CTE make great music",
+    "reviews": [
+      { "author": "John Doe", "text": "Amazing performance!" },
+      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
+    ],
+    "photos": [
+      " "
+    ]
+  },
+
+  {
+    "id": "8",
+    "name": "Metallica",
+    "genre": "Rock",
+    "photoUrl": " ",
+    "bio": "Metallica make great music",
+    "reviews": [
+      { "author": "John Doe", "text": "Amazing performance!" },
+      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
+    ],
+    "photos": [
+      " "
+    ]
+  },
+  {
+    "id": "9",
+    "name": "Mitski",
+    "genre": "Pop",
+    "photoUrl": " ",
+    "bio": "Mitski makes great music",
+    "reviews": [
+      { "author": "John Doe", "text": "Amazing performance!" },
+      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
+    ],
+    "photos": [
+      " "
+    ]
+  }
+
 ]
