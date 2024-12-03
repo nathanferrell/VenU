@@ -14,7 +14,7 @@ const UpcomingConcerts = ({ navigation }) => {
                     <View style={styles.card}>
                         <Text style={styles.title}>{item.name}</Text>
                         <Text style={styles.details}>Date: {item.date}</Text>
-                        {/* Add more details as needed */}
+                        
                     </View>
                 )}
             />
