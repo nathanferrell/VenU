@@ -19,6 +19,7 @@ import FavoriteArtists from './components/UserArtists.js';
 import RecentConcerts from './components/RecentConcerts.js';
 import UserVenues from './components/UserVenues';
 import ArtistDetails from './screens/ArtistDetails';
+import VenueDetails from './screens/VenueDetails';
 import ConcertDetail from './screens/ConcertDetails';
 import UpcomingConcerts from './components/UpcomingConcerts';
 import { styles, cardStyles, commonStyles } from './styles.js';
