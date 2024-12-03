@@ -19,6 +19,8 @@ import FavoriteArtists from './components/UserArtists.js';
 import RecentConcerts from './components/RecentConcerts.js';
 import UserVenues from './components/UserVenues';
 import ArtistDetails from './screens/ArtistDetails';
+import ConcertDetail from './screens/ConcertDetails';
+import UpcomingConcerts from './components/UpcomingConcerts';
 import { styles, cardStyles, commonStyles } from './styles.js';
 
 const Tab = createBottomTabNavigator();
@@ -198,6 +200,10 @@ function App() {
                   <Stack.Screen name="ArtistDetails" component={ArtistDetails} />
                    <Stack.Screen name="RecentConcerts" component={RecentConcerts} />
                    <Stack.Screen name="UserVenues" component={UserVenues} />
+                    <Stack.Screen name="VenueDetails" component={VenueDetails} options={{ title: 'Venue Details' }} />
+                   <Stack.Screen name="ConcertDetail" component={ConcertDetail} options={{ title: 'Concert Details' }} />
+                   <Stack.Screen name="UpcomingConcerts" component={UpcomingConcerts} options={{ title: 'Upcoming Concerts' }} />
+    
                     <Stack.Screen
                         name="SettingsModal"
                         component={SettingsModal}
