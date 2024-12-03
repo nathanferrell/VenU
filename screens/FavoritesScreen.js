@@ -11,7 +11,7 @@ const Card = ({ item }: { item: { id: string; title: string } }) => {
         <View style={styles.card}>
             <Text style={styles.cardText}>{item.title}</Text>
             <TouchableOpacity onPress={() => removeFavorite(item.id)}>
-                <Ionicons name="heart" size={24} color="purple" />
+                <Ionicons name="heart" size={24} color='#9363f4' />
             </TouchableOpacity>
         </View>
     );
@@ -57,7 +57,7 @@ const FavoritesScreen = () => {
                 {/* Favorite Recent Events Section */}
                 {favoriteRecentEvents.length > 0 && (
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>Favorite Recent Events</Text>
+                        <Text style={styles.sectionTitle}> Recent Events</Text>
                         <FlatList
                             data={favoriteRecentEvents}
                             renderItem={renderCard}
@@ -72,7 +72,7 @@ const FavoritesScreen = () => {
                 {/* Favorite Upcoming Events Section */}
                 {favoriteUpcomingEvents.length > 0 && (
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>Favorite Upcoming Events</Text>
+                        <Text style={styles.sectionTitle}> Upcoming Events</Text>
                         <FlatList
                             data={favoriteUpcomingEvents}
                             renderItem={renderCard}
@@ -87,7 +87,7 @@ const FavoritesScreen = () => {
                 {/* Favorite Venues Section */}
                 {favoriteVenues.length > 0 && (
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>Favorite Venues</Text>
+                        <Text style={styles.sectionTitle}> Venues</Text>
                         <FlatList
                             data={favoriteVenues}
                             renderItem={renderCard}
@@ -122,16 +122,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     card: {
-        width: 150,
+        width: 150, // Preserving the specified dimensions
         height: 100,
-        backgroundColor: '#f0f0f0',
-        borderRadius: 8,
+        backgroundColor: '#3c3c3c', // Medium gray background
+        borderRadius: 10, // Slightly increased border radius for consistency
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 3,
     },
     cardText: {
-        fontSize: 16,
+        fontSize: 18,
+        color: '#e4d1ff',
     },
 });
 

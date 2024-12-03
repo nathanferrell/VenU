@@ -24,7 +24,7 @@ const Card = ({ item, type }: { item: { id: string; title: string }; type: strin
                 <Ionicons
                     name={isFav ? 'heart' : 'heart-outline'}
                     size={24}
-                    color={isFav ? 'purple' : '#9363f4'}
+                    color={isFav ? '#9363f4' : '#9363f4'}
                 />
             </TouchableOpacity>
         </View>
@@ -54,12 +54,12 @@ const HomeScreen = () => {
     const concerts = require('../data/concerts.json');
     const venues = require('../data/venues.json');
     const artists = require('../data/artists.json');
-
+    const upcomingConcerts = require('../data/upcomingconcerts.json')
 
 
     // Limit to the first 3 items for each section
     const limitedRecentData = concerts.slice(0, 3);
-    const limitedUpcomingData = upcomingData.slice(0, 3);
+    const limitedUpcomingData = upcomingConcerts.slice(0, 3);
     const limitedVenuesData = venues.slice(0, 3);
 
     // Render each section card
@@ -101,6 +101,7 @@ const HomeScreen = () => {
                                     style={styles.horizontalScroll}
                                 />
                             </View>
+                            
 
                 {/* Venues Section */}
                 <View style={styles.section}>
@@ -140,18 +141,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     card: {
-        width: 150,
+        width: 150, // Preserving the specified dimensions
         height: 100,
-        backgroundColor: '#f0f0f0',
-        borderRadius: 8,
+        backgroundColor: '#3c3c3c', // Medium gray background
+        borderRadius: 10, // Slightly increased border radius for consistency
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 3,
     },
     cardText: {
-        color: '#9e5bff',
-        fontSize: 16,
-        marginTop: 10
+        fontSize: 18,
+        color: '#e4d1ff',
     },
 });
 
