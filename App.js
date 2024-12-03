@@ -19,7 +19,7 @@ import FavoriteArtists from './components/UserArtists.js';
 import RecentConcerts from './components/RecentConcerts.js';
 import UserVenues from './components/UserVenues';
 import ArtistDetails from './screens/ArtistDetails';
-import { appStyles } from './styles/styles.js';
+import { styles, cardStyles, commonStyles } from './styles.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -112,6 +112,9 @@ function BottomTabs() {
                     backgroundColor: 'black',
                     height: 160,
                 },
+                headerLeftContainerStyle: {
+                    paddingLeft: 20, // Reduce padding to bring the title closer
+                },
                 headerTintColor: '#fff',
             })}
         >
@@ -126,15 +129,22 @@ function BottomTabs() {
                 options={{
                     headerTitle: 'Favorites',
                     headerTitleStyle: {
-                        fontSize: 28,
+                        fontSize: 30,
                         fontWeight: 'bold',
-                        color: '#e4d1ff',
+                        textAlign: 'center',
+                        color: '#d1a7ff',
+                        textAlign: 'center',  // Ensures title text is centered horizontally
+                        marginLeft: 'auto',   // Centers the title by pushing it towards the middle
+                        marginRight: 'auto',
+                        
                     },
                     headerLeftContainerStyle: {
-                        paddingLeft: 10, // Reduce padding to bring the title closer
+                        paddingLeft: 20, // Reduce padding to bring the title closer
                     },
                     headerTitleContainerStyle: {
-                        paddingLeft: 0, // Adjust to center the title better
+                        alignItems: 'center', // Centers the title container
+                        justifyContent: 'center', // Ensures the title container is centered vertically
+                        flex: 1, // Adjust to center the title better
                     },
                 }}
             />
@@ -142,17 +152,24 @@ function BottomTabs() {
                 name="Venue"
                 component={VenueStack}
                 options={({ navigation }) => ({
-                    headerTitle: 'My Account',
+                    headerTitle: 'Account',
                     headerTitleStyle: {
-                        fontSize: 28,
+                        fontSize: 30,
                         fontWeight: 'bold',
-                        color: '#e4d1ff',
+                        textAlign: 'center',
+                        color: '#d1a7ff',
+                        textAlign: 'center',  // Ensures title text is centered horizontally
+                        marginLeft: 'auto',   // Centers the title by pushing it towards the middle
+                        marginRight: 'auto',
+                        paddingLeft: 10,
                     },
                     headerLeftContainerStyle: {
-                        paddingLeft: 0, // Reduce padding to balance the title position
+                        paddingLeft: 20, // Reduce padding to bring the title closer
                     },
                     headerTitleContainerStyle: {
-                        paddingLeft: 0, // Adjust to center the title better
+                        alignItems: 'center', // Centers the title container
+                        justifyContent: 'center', // Ensures the title container is centered vertically
+                        flex: 1, // Adjust to center the title better
                     },
                     headerRight: () => <HeaderRightSettings navigation={navigation} />,
                 })}
@@ -198,22 +215,3 @@ function App() {
 }
 
 export default App;
-
-// Global Styles
-const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-        backgroundColor: 'black',
-    },
-    logoContainer: {
-        paddingLeft: 0,
-    },
-    logo: {
-        width: 148,
-        height: 117,
-    },
-    gearIcon: {
-        marginRight: 30,
-        marginTop: 10,
-    },
-});
