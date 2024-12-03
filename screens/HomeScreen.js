@@ -3,6 +3,7 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, FlatList, PanResp
 import { useFavorites } from './FavoritesContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import { screenStyles } from '../styles';
 
 // Card component with a heart icon for adding or removing from favorites
 const Card = ({ item, type }: { item: { id: string; title: string }; type: string }) => {
@@ -18,13 +19,13 @@ const Card = ({ item, type }: { item: { id: string; title: string }; type: strin
     };
 
     return (
-        <View style={styles.card}>
-            <Text style={styles.cardText}>{item.title}</Text>
+        <View style={screenStyles.card}>
+            <Text style={screenStyles.cardText}>{item.title}</Text>
             <TouchableOpacity onPress={toggleFavorite}>
                 <Ionicons
                     name={isFav ? 'heart' : 'heart-outline'}
                     size={24}
-                    color={isFav ? 'purple' : '#9363f4'}
+                    color={isFav ? '#9363f4' : '#9363f4'}
                 />
             </TouchableOpacity>
         </View>
@@ -51,11 +52,10 @@ const HomeScreen = () => {
     ).current;
 
     // Load data from the JSON files
-    const upcomingConcerts = require('../data/upcomingconcerts.json')
     const concerts = require('../data/concerts.json');
     const venues = require('../data/venues.json');
     const artists = require('../data/artists.json');
-
+    const upcomingConcerts = require('../data/upcomingconcerts.json')
 
 
     // Limit to the first 3 items for each section
@@ -72,11 +72,11 @@ const HomeScreen = () => {
             {...panResponder.panHandlers}
             style={{ flex: 1, backgroundColor: 'black' }}
         >
-            <ScrollView style={styles.container}>
+            <ScrollView style={screenStyles.container}>
                 {/* Recent Section */}
-                <View style={styles.section}>
+                <View style={screenStyles.section}>
                     <TouchableOpacity onPress={() => navigation.navigate('RecentConcerts')}>
-                        <Text style={styles.sectionTitle}>Recent</Text>
+                        <Text style={screenStyles.sectionTitle}>Recent</Text>
                     </TouchableOpacity>
                     <FlatList
                         data={limitedRecentData}  // Limit to 3 items
@@ -84,14 +84,14 @@ const HomeScreen = () => {
                         keyExtractor={(item) => item.id}
                         horizontal
                         showsHorizontalScrollIndicator={false}
-                        style={styles.horizontalScroll}
+                        style={screenStyles.horizontalScroll}
                     />
                 </View>
 
         {/* Upcoming Section */}
-                            <View style={styles.section}>
+                            <View style={screenStyles.section}>
                                 <TouchableOpacity onPress={() => navigation.navigate('UserArtists')}>
-                                    <Text style={styles.sectionTitle}>Upcoming</Text>
+                                    <Text style={screenStyles.sectionTitle}>Upcoming</Text>
                                 </TouchableOpacity>
                                 <FlatList
                                    data={limitedUpcomingData}  // Use upcomingConcerts.json data
@@ -99,14 +99,15 @@ const HomeScreen = () => {
                                     keyExtractor={(item) => item.id}
                                     horizontal
                                     showsHorizontalScrollIndicator={false}
-                                    style={styles.horizontalScroll}
+                                    style={screenStyles.horizontalScroll}
                                 />
                             </View>
+                            
 
                 {/* Venues Section */}
-                <View style={styles.section}>
+                <View style={screenStyles.section}>
                     <TouchableOpacity onPress={() => navigation.navigate('UserVenues')}>
-                        <Text style={styles.sectionTitle}>Venues</Text>
+                        <Text style={screenStyles.sectionTitle}>Venues</Text>
                     </TouchableOpacity>
                     <FlatList
                         data={limitedVenuesData}  // Limit to 3 items
@@ -114,7 +115,7 @@ const HomeScreen = () => {
                         keyExtractor={(item) => item.id}
                         horizontal
                         showsHorizontalScrollIndicator={false}
-                        style={styles.horizontalScroll}
+                        style={screenStyles.horizontalScroll}
                     />
                 </View>
             </ScrollView>
@@ -122,39 +123,6 @@ const HomeScreen = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'black',
-        padding: 10,
-    },
-    section: {
-        marginBottom: 20,
-    },
-    sectionTitle: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#e4d1ff',
-        marginBottom: 10,
-    },
-    horizontalScroll: {
-        flexDirection: 'row',
-    },
-    card: {
-        width: 150,
-        height: 100,
-        backgroundColor: '#f0f0f0',
-        borderRadius: 8,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 10,
-    },
-    cardText: {
-        color: '#9e5bff',
-        fontSize: 16,
-        marginTop: 10
-    },
-});
 
 export default HomeScreen;
 
