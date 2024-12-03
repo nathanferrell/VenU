@@ -3,13 +3,14 @@ import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity, PanResp
 import { useFavorites } from './FavoritesContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import { screenStyles } from '../styles';
 
 const Card = ({ item }: { item: { id: string; title: string } }) => {
     const { removeFavorite } = useFavorites();
 
     return (
-        <View style={styles.card}>
-            <Text style={styles.cardText}>{item.title}</Text>
+        <View style={screenStyles.card}>
+            <Text style={screenStyles.cardText}>{item.title}</Text>
             <TouchableOpacity onPress={() => removeFavorite(item.id)}>
                 <Ionicons name="heart" size={24} color='#9363f4' />
             </TouchableOpacity>
@@ -51,50 +52,50 @@ const FavoritesScreen = () => {
     return (
         <Animated.View
             {...panResponder.panHandlers}
-            style={styles.container}
+            style={screenStyles.container}
         >
             <ScrollView>
                 {/* Favorite Recent Events Section */}
                 {favoriteRecentEvents.length > 0 && (
-                    <View style={styles.section}>
-                        <Text style={styles.sectionTitle}> Recent Events</Text>
+                    <View style={screenStyles.section}>
+                        <Text style={screenStyles.sectionTitle}> Recent Events</Text>
                         <FlatList
                             data={favoriteRecentEvents}
                             renderItem={renderCard}
                             keyExtractor={(item) => item.id}
                             horizontal
                             showsHorizontalScrollIndicator={false}
-                            style={styles.horizontalScroll}
+                            style={screenStyles.horizontalScroll}
                         />
                     </View>
                 )}
 
                 {/* Favorite Upcoming Events Section */}
                 {favoriteUpcomingEvents.length > 0 && (
-                    <View style={styles.section}>
-                        <Text style={styles.sectionTitle}> Upcoming Events</Text>
+                    <View style={screenStyles.section}>
+                        <Text style={screenStyles.sectionTitle}> Upcoming Events</Text>
                         <FlatList
                             data={favoriteUpcomingEvents}
                             renderItem={renderCard}
                             keyExtractor={(item) => item.id}
                             horizontal
                             showsHorizontalScrollIndicator={false}
-                            style={styles.horizontalScroll}
+                            style={screenStyles.horizontalScroll}
                         />
                     </View>
                 )}
 
                 {/* Favorite Venues Section */}
                 {favoriteVenues.length > 0 && (
-                    <View style={styles.section}>
-                        <Text style={styles.sectionTitle}> Venues</Text>
+                    <View style={screenStyles.section}>
+                        <Text style={screenStyles.sectionTitle}> Venues</Text>
                         <FlatList
                             data={favoriteVenues}
                             renderItem={renderCard}
                             keyExtractor={(item) => item.id}
                             horizontal
                             showsHorizontalScrollIndicator={false}
-                            style={styles.horizontalScroll}
+                            style={screenStyles.horizontalScroll}
                         />
                     </View>
                 )}
@@ -103,43 +104,7 @@ const FavoritesScreen = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'black',
-        padding: 10,
-    },
-    section: {
-        marginBottom: 20,
-    },
-    sectionTitle: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#e4d1ff',
-        marginBottom: 10,
-    },
-    horizontalScroll: {
-        flexDirection: 'row',
-    },
-    card: {
-        width: 150, // Preserving the specified dimensions
-        height: 100,
-        backgroundColor: '#3c3c3c', // Medium gray background
-        borderRadius: 10, // Slightly increased border radius for consistency
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        elevation: 3,
-    },
-    cardText: {
-        fontSize: 18,
-        color: '#e4d1ff',
-    },
-});
+
 
 export default FavoritesScreen;
 
