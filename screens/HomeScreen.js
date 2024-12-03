@@ -51,6 +51,7 @@ const HomeScreen = () => {
     ).current;
 
     // Load data from the JSON files
+    const upcomingConcerts = require('../data/upcomingconcerts.json')
     const concerts = require('../data/concerts.json');
     const venues = require('../data/venues.json');
     const artists = require('../data/artists.json');
