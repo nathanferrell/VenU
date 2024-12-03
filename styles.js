@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     iconContainer: {
         padding: 10,  
     },
@@ -21,10 +21,6 @@ const styles = StyleSheet.create({
     logo: {
         width: 148,
         height: 117,
-    },
-    gearIcon: {
-        marginRight: 30,
-        marginTop: 10,
     },
 });
 
@@ -69,3 +65,40 @@ export const cardStyles = StyleSheet.create({
     },
   });
   
+  export const screenStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'black',
+        padding: 10,
+    },
+    section: {
+        marginBottom: 20,
+    },
+    sectionTitle: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#e4d1ff',
+        marginBottom: 10,
+    },
+    horizontalScroll: {
+        flexDirection: 'row',
+    },
+    card: {
+        width: 150, // Preserving the specified dimensions
+        height: 100,
+        backgroundColor: '#3c3c3c', // Medium gray background
+        borderRadius: 10, // Slightly increased border radius for consistency
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 3,
+    },
+    cardText: {
+        fontSize: 18,
+        color: '#e4d1ff',
+    },
+});
