@@ -8,6 +8,7 @@ import {
   Image,
   TextInput,
   Button,
+  ScrollView,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -109,29 +110,31 @@ const ConcertDetail = ({ route }) => {
         animationOut="slideOutDown"
       >
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Add a Review</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Your name"
-            value={reviewAuthor}
-            onChangeText={setReviewAuthor}
-          />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Write your review..."
-            value={reviewText}
-            onChangeText={setReviewText}
-          />
-          <TouchableOpacity style={styles.pickImageButton} onPress={pickImage}>
-            <Text style={styles.pickImageText}>Pick an Image</Text>
-          </TouchableOpacity>
-          {photoUri && <Image source={{ uri: photoUri }} style={styles.previewImage} />}
-          <View style={styles.buttonContainer}>
-            <Button title="Submit" color="#9363f4" onPress={addReview} />
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button title="Close" color="#9363f4" onPress={() => setModalVisible(false)} />
-          </View>
+          <ScrollView contentContainerStyle={styles.scrollContent}>
+            <Text style={styles.modalTitle}>Add a Review</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Your name"
+              value={reviewAuthor}
+              onChangeText={setReviewAuthor}
+            />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Write your review..."
+              value={reviewText}
+              onChangeText={setReviewText}
+            />
+            <TouchableOpacity style={styles.pickImageButton} onPress={pickImage}>
+              <Text style={styles.pickImageText}>Pick an Image</Text>
+            </TouchableOpacity>
+            {photoUri && <Image source={{ uri: photoUri }} style={styles.previewImage} />}
+            <View style={styles.buttonContainer}>
+              <Button title="Submit" color="#9363f4" onPress={addReview} />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button title="Close" color="#9363f4" onPress={() => setModalVisible(false)} />
+            </View>
+          </ScrollView>
         </View>
       </Modal>
     </View>
@@ -216,7 +219,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 30,
-    height: '50%',
+    height: '70%',
+  },
+  scrollContent: {
+    paddingBottom: 20,
   },
   modalTitle: {
     fontSize: 24,
