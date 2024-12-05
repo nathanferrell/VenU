@@ -1,8 +1,27 @@
-import React from 'react';
-import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+import React, { useRef } from 'react';
+import { View, FlatList, Text, TouchableOpacity, StyleSheet, PanResponder, Animated } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const VenueScreen = () => {
-  // Sample data for user settings
+  const navigation = useNavigation();
+  const pan = useRef(new Animated.ValueXY()).current;
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: (evt, gestureState) => {
+        return Math.abs(gestureState.dx) > Math.abs(gestureState.dy);
+      },
+      onPanResponderRelease: (evt, gestureState) => {
+        if (gestureState.dx < -50) {
+          navigation.navigate('Home');
+        } else if (gestureState.dx > 50) {
+          navigation.navigate('Favorites');
+        }
+      },
+    })
+  ).current;
+
   const settings = [
     { id: '1', title: 'Profile' },
     { id: '2', title: 'Notifications' },
@@ -14,7 +33,6 @@ const VenueScreen = () => {
     { id: '8', title: 'About' },
   ];
 
-  // Render each setting card
   const renderSettingCard = ({ item }) => (
     <TouchableOpacity style={styles.card} onPress={() => console.log(`${item.title} clicked`)}>
       <Text style={styles.cardText}>{item.title}</Text>
@@ -22,24 +40,23 @@ const VenueScreen = () => {
   );
 
   return (
-    <View style={styles.container}>
-      {/* Assign a unique key based on numColumns */}
+    <Animated.View {...panResponder.panHandlers} style={styles.container}>
       <FlatList
-        key={'2-columns'} // Unique key for the FlatList
+        key={'2-columns'}
         data={settings}
         renderItem={renderSettingCard}
         keyExtractor={(item) => item.id}
-        numColumns={2} // Set 2 cards per row
+        numColumns={2}
         contentContainerStyle={styles.grid}
       />
-    </View>
+    </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000', // Black background
+    backgroundColor: '#000',
   },
   grid: {
     flexGrow: 1,
@@ -48,9 +65,9 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     margin: 10,
-    aspectRatio: 1, // Ensures cards are square
+    aspectRatio: 1,
     borderRadius: 8,
-    backgroundColor: '#1e1e1e', // Dark gray card color
+    backgroundColor: '#1e1e1e',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
@@ -63,7 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#fff', // White text for contrast
+    color: '#fff',
   },
 });
 
