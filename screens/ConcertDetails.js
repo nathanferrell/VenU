@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: '#007BFF',
+    backgroundColor: '#9363f4',
     width: 60,
     height: 60,
     borderRadius: 30,
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   fabText: {
-    color: '#fff',
+    color: '#e4d1ff',
     fontSize: 24,
     fontWeight: 'bold',
   },
