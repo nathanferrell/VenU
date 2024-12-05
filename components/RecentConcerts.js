@@ -11,7 +11,7 @@ const artists = require('../data/artists.json');
 const RecentConcerts = () => {
 const navigation = useNavigation();
   return (
-  <View>
+  <View style={{ flex: 1, backgroundColor: 'black' }}>
     <Text style={commonStyles.header}>Recent Concerts</Text>
     <FlatList
       data={concerts}
