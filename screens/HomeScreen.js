@@ -96,9 +96,9 @@ const HomeScreen = () => {
 
                 {/* Upcoming Section */}
                 <View style={screenStyles.section}>
-                    <TouchableOpacity>
-                        <Text style={screenStyles.sectionTitle}>Upcoming</Text>
-                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('UpcomingConcerts')}>
+    			<Text style={screenStyles.sectionTitle}>Upcoming</Text>
+		    </TouchableOpacity>
                     <View onStartShouldSetResponder={() => false}>
                         <FlatList
                             data={limitedUpcomingData}
