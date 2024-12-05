@@ -9,12 +9,14 @@ import {
   TextInput,
   Button,
   ScrollView,
+  Modal as RNModal,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { commonStyles } from '../styles';
 import { useNavigation } from '@react-navigation/native';
 
+// Load JSON data
 const concerts = require('../data/concerts.json');
 const venues = require('../data/venues.json');
 const artists = require('../data/artists.json');
@@ -22,16 +24,37 @@ const artists = require('../data/artists.json');
 const ConcertDetail = ({ route }) => {
   const { concertId } = route.params;
   const navigation = useNavigation();
+
+  // Find the concert by ID
   const concert = concerts.find(c => c.id === concertId);
-  const venue = venues.find(v => v.id === concert.venueId);
-  const concertArtists = concert.artistIds.map(id => artists.find(a => a.id === id));
-  const renderText = text => text || '';
+
+  // Correctly match the venue by handling inconsistent ID formats
+  const venue = venues.find(v => v.id === mapVenueId(concert?.venueId));
+
+  // Match artists by IDs
+  const concertArtists = concert?.artistIds?.map(id => artists.find(a => a.id === id)) || [];
+
+  // Utility function to handle mismatched ID formats
+  function mapVenueId(venueId) {
+    // Example: Normalize numeric IDs (from concerts.json) to string-based IDs (in venues.json)
+    const venueMap = {
+      "1": "one",
+      "2": "two",
+      "3": "three",
+      "4": "four",
+      "5": "five",
+    };
+    return venueMap[venueId] || venueId;
+  }
 
   const [modalVisible, setModalVisible] = useState(false);
   const [reviews, setReviews] = useState(concert?.reviews || []);
   const [reviewText, setReviewText] = useState('');
   const [reviewAuthor, setReviewAuthor] = useState('');
   const [photoUri, setPhotoUri] = useState(null);
+  
+  // New state for image enlargement
+  const [enlargedImage, setEnlargedImage] = useState(null);
 
   const addReview = () => {
     const newReview = {
@@ -61,12 +84,14 @@ const ConcertDetail = ({ route }) => {
     );
   };
 
+  const renderText = text => text || 'Unknown';
+
   return (
     <View style={styles.container}>
-      <Text style={commonStyles.header}>{concert.name}</Text>
-      <Text style={commonStyles.text}>{concert.date}</Text>
+      <Text style={commonStyles.header}>{renderText(concert?.name)}</Text>
+      <Text style={commonStyles.text}>{renderText(concert?.date)}</Text>
       <Text style={commonStyles.text}>
-        {venue?.name || 'Unknown Venue'}, {venue?.location || 'Unknown Location'}
+        {renderText(venue?.name)}, {renderText(venue?.location)}
       </Text>
       {concertArtists.map(artist => (
         <TouchableOpacity
@@ -74,7 +99,7 @@ const ConcertDetail = ({ route }) => {
           onPress={() => navigation.navigate('ArtistDetails', { artistId: artist?.id })}
         >
           <Text style={styles.linkText}>
-            {artist?.name || 'Unknown Artist'} - {artist?.genre || 'Unknown Genre'}
+            {renderText(artist?.name)} - {renderText(artist?.genre)}
           </Text>
         </TouchableOpacity>
       ))}
@@ -88,7 +113,11 @@ const ConcertDetail = ({ route }) => {
             <View style={styles.reviewContainer}>
               <Text style={styles.reviewAuthor}>By {renderText(item.author)}</Text>
               <Text style={styles.reviewText}>{renderText(item.text)}</Text>
-              {item.photo && <Image source={{ uri: item.photo }} style={styles.reviewImage} />}
+              {item.photo && (
+                <TouchableOpacity onPress={() => setEnlargedImage(item.photo)}>
+                  <Image source={{ uri: item.photo }} style={styles.reviewImage} />
+                </TouchableOpacity>
+              )}
             </View>
           )}
         />
@@ -99,6 +128,27 @@ const ConcertDetail = ({ route }) => {
       <TouchableOpacity style={styles.fab} onPress={() => setModalVisible(true)}>
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
+
+      {/* Image Enlargement Modal */}
+      <RNModal
+        visible={!!enlargedImage}
+        transparent={true}
+        onRequestClose={() => setEnlargedImage(null)}
+      >
+        <TouchableOpacity 
+          style={styles.enlargedImageContainer} 
+          activeOpacity={1} 
+          onPress={() => setEnlargedImage(null)}
+        >
+          {enlargedImage && (
+            <Image 
+              source={{ uri: enlargedImage }} 
+              style={styles.enlargedImage} 
+              resizeMode="contain"
+            />
+          )}
+        </TouchableOpacity>
+      </RNModal>
 
       <Modal
         isVisible={modalVisible}
@@ -257,6 +307,17 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginVertical: 10,
+  },
+  // New styles for image enlargement
+  enlargedImageContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  enlargedImage: {
+    width: '90%',
+    height: '80%',
   },
 });
 
