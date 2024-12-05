@@ -10,6 +10,7 @@ const artists = require('../data/artists.json');
 
 const RecentConcerts = () => {
 const navigation = useNavigation();
+  return (
   <View>
     <Text style={commonStyles.header}>Recent Concerts</Text>
     <FlatList
