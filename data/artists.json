@@ -5,10 +5,6 @@
       "genre": "Pop",
       "photoUrl": "https://flic.kr/p/2hRj4UZ",
       "bio": "Billie Eilish makes great music",
-      "reviews": [
-        { "author": "John Doe", "text": "Amazing performance!" },
-        { "author": "Jane Doe", "text": "Really enjoyed the concert." }
-      ],
       "photos": [
         "https://flic.kr/p/2meVyBy"
       ]
@@ -19,10 +15,6 @@
       "genre": "Indie Pop",
       "photoUrl": "https://flic.kr/p/2nsUDDe",
       "bio": "Remi Wolf makes great music",
-      "reviews": [
-        { "author": "John Doe", "text": "Amazing performance!" },
-        { "author": "Jane Doe", "text": "Really enjoyed the concert." }
-      ],
       "photos": [
         "https://flic.kr/p/2nDV9Un"
       ]
@@ -33,10 +25,6 @@
       "genre": "Alternative Rock",
       "photoUrl": "https://flic.kr/p/2nwDE8a",
       "bio": "RKS makes great music",
-      "reviews": [
-        { "author": "John Doe", "text": "Amazing performance!" },
-        { "author": "Jane Doe", "text": "Really enjoyed the concert." }
-      ],
       "photos": [
         "https://flic.kr/p/2nwyqoA"
       ]
@@ -47,10 +35,6 @@
       "genre": "Soul",
       "photoUrl": "https://flic.kr/p/2newVns",
       "bio": "Yebba makes great music",
-      "reviews": [
-        { "author": "John Doe", "text": "Amazing performance!" },
-        { "author": "Jane Doe", "text": "Really enjoyed the concert." }
-      ],
       "photos": [
         "https://flic.kr/p/2nezAUZ"
       ]
@@ -61,13 +45,6 @@
     "genre": "Rock",
     "photoUrl": " ",
     "bio": "MCR makes great music",
-    "reviews": [
-      { "author": "John Doe", "text": "Amazing performance!" },
-      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
-    ],
-    "photos": [
-      " "
-    ]
   },
   {
     "id": "6",
@@ -75,13 +52,6 @@
     "genre": "Rock",
     "photoUrl": " ",
     "bio": "The Smiths make great music",
-    "reviews": [
-      { "author": "John Doe", "text": "Amazing performance!" },
-      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
-    ],
-    "photos": [
-      " "
-    ]
   },
   {
     "id": "7",
@@ -89,10 +59,6 @@
     "genre": "Rock",
     "photoUrl": " ",
     "bio": "CTE make great music",
-    "reviews": [
-      { "author": "John Doe", "text": "Amazing performance!" },
-      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
-    ],
     "photos": [
       " "
     ]
@@ -104,10 +70,6 @@
     "genre": "Rock",
     "photoUrl": " ",
     "bio": "Metallica make great music",
-    "reviews": [
-      { "author": "John Doe", "text": "Amazing performance!" },
-      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
-    ],
     "photos": [
       " "
     ]
@@ -118,10 +80,6 @@
     "genre": "Pop",
     "photoUrl": " ",
     "bio": "Mitski makes great music",
-    "reviews": [
-      { "author": "John Doe", "text": "Amazing performance!" },
-      { "author": "Jane Doe", "text": "Really enjoyed the concert." }
-    ],
     "photos": [
       " "
     ]
