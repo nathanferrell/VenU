@@ -1,20 +1,28 @@
 import React, { useRef } from 'react';
-import { View, Text, ScrollView, StyleSheet, FlatList, TouchableOpacity, PanResponder, Animated } from 'react-native';
+import { View, Text, ScrollView, FlatList, TouchableOpacity, PanResponder, Animated } from 'react-native';
 import { useFavorites } from './FavoritesContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { screenStyles } from '../styles';
 
-const Card = ({ item }: { item: { id: string; title: string } }) => {
+const Card = ({ item, type, navigation }: { item: { id: string; title: string }; type: string; navigation: any }) => {
     const { removeFavorite } = useFavorites();
 
+    const handlePress = () => {
+        if (type === 'recent') {
+            navigation.navigate('ConcertDetail', { concertId: item.id });
+        } else if (type === 'venue') {
+            navigation.navigate('VenueDetails', { venueId: item.id });
+        }
+    };
+
     return (
-        <View style={screenStyles.card}>
-            <Text style={screenStyles.cardText}>{item.title}</Text>
+        <View style={styles.card}>
+            <Text style={styles.cardText}>{item.title}</Text>
             <TouchableOpacity onPress={() => removeFavorite(item.id)}>
-                <Ionicons name="heart" size={24} color='#9363f4' />
+                <Ionicons name="heart" size={24} color="purple" />
             </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     );
 };
 
@@ -26,16 +34,13 @@ const FavoritesScreen = () => {
     const panResponder = useRef(
         PanResponder.create({
             onMoveShouldSetPanResponder: (evt, gestureState) => {
-                // Only respond to horizontal swipes
                 return Math.abs(gestureState.dx) > Math.abs(gestureState.dy);
             },
             onPanResponderRelease: (evt, gestureState) => {
                 if (gestureState.dx < -50) {
-                    // Swipe left to navigate to Venue
-                    navigation.navigate('Venue'); // Match this with the tab name in App.tsx
+                    navigation.navigate('Venue');
                 } else if (gestureState.dx > 50) {
-                    // Swipe right to navigate to Home
-                    navigation.navigate('Home'); // Match this with the tab name in App.tsx
+                    navigation.navigate('Home');
                 }
             },
         })
@@ -45,8 +50,8 @@ const FavoritesScreen = () => {
     const favoriteUpcomingEvents = favorites.filter((item) => item.type === 'upcoming');
     const favoriteVenues = favorites.filter((item) => item.type === 'venue');
 
-    const renderCard = ({ item }: { item: { id: string; title: string } }) => (
-        <Card item={item} />
+    const renderCard = ({ item, type }: { item: { id: string; title: string }, type: string }) => (
+        <Card item={item} type={type} navigation={navigation} />
     );
 
     return (
@@ -57,11 +62,11 @@ const FavoritesScreen = () => {
             <ScrollView>
                 {/* Favorite Recent Events Section */}
                 {favoriteRecentEvents.length > 0 && (
-                    <View style={screenStyles.section}>
-                        <Text style={screenStyles.sectionTitle}> Recent Events</Text>
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>Favorite Recent Events</Text>
                         <FlatList
                             data={favoriteRecentEvents}
-                            renderItem={renderCard}
+                            renderItem={({ item }) => renderCard({ item, type: 'recent' })}
                             keyExtractor={(item) => item.id}
                             horizontal
                             showsHorizontalScrollIndicator={false}
@@ -72,11 +77,11 @@ const FavoritesScreen = () => {
 
                 {/* Favorite Upcoming Events Section */}
                 {favoriteUpcomingEvents.length > 0 && (
-                    <View style={screenStyles.section}>
-                        <Text style={screenStyles.sectionTitle}> Upcoming Events</Text>
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>Favorite Upcoming Events</Text>
                         <FlatList
                             data={favoriteUpcomingEvents}
-                            renderItem={renderCard}
+                            renderItem={({ item }) => renderCard({ item, type: 'upcoming' })}
                             keyExtractor={(item) => item.id}
                             horizontal
                             showsHorizontalScrollIndicator={false}
@@ -87,11 +92,11 @@ const FavoritesScreen = () => {
 
                 {/* Favorite Venues Section */}
                 {favoriteVenues.length > 0 && (
-                    <View style={screenStyles.section}>
-                        <Text style={screenStyles.sectionTitle}> Venues</Text>
+                    <View style={styles.section}>
+                        <Text style={styles.sectionTitle}>Favorite Venues</Text>
                         <FlatList
                             data={favoriteVenues}
-                            renderItem={renderCard}
+                            renderItem={({ item }) => renderCard({ item, type: 'venue' })}
                             keyExtractor={(item) => item.id}
                             horizontal
                             showsHorizontalScrollIndicator={false}
@@ -104,7 +109,36 @@ const FavoritesScreen = () => {
     );
 };
 
-
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'black',
+        padding: 10,
+    },
+    section: {
+        marginBottom: 20,
+    },
+    sectionTitle: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#e4d1ff',
+        marginBottom: 10,
+    },
+    horizontalScroll: {
+        flexDirection: 'row',
+    },
+    card: {
+        width: 150,
+        height: 100,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 10,
+    },
+    cardText: {
+        fontSize: 16,
+    },
+});
 
 export default FavoritesScreen;
-

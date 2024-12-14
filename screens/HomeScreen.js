@@ -5,8 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { screenStyles } from '../styles';
 
-// Card component with a heart icon for adding or removing from favorites
-const Card = ({ item, type }: { item: { id: string; title: string }; type: string }) => {
+const Card = ({ item, type, navigation }) => {
     const { addFavorite, removeFavorite, isFavorite } = useFavorites();
     const isFav = isFavorite(item.id);
 
@@ -18,9 +17,17 @@ const Card = ({ item, type }: { item: { id: string; title: string }; type: strin
         }
     };
 
+    const handlePress = () => {
+        if (type === 'recent') {
+            navigation.navigate('ConcertDetail', { concertId: item.id });
+        } else if (type === 'venue') {
+            navigation.navigate('VenueDetails', { venueId: item.id });
+        }
+    };
+
     return (
-        <View style={screenStyles.card}>
-            <Text style={screenStyles.cardText}>{item.title}</Text>
+        <TouchableOpacity onPress={handlePress} style={screenScreenStyles.card}>
+            <Text style={screenScreenStyles.cardText}>{item.title}</Text>
             <TouchableOpacity onPress={toggleFavorite}>
                 <Ionicons
                     name={isFav ? 'heart' : 'heart-outline'}
@@ -28,7 +35,7 @@ const Card = ({ item, type }: { item: { id: string; title: string }; type: strin
                     color={isFav ? '#9363f4' : '#9363f4'}
                 />
             </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     );
 };
 
@@ -38,9 +45,8 @@ const HomeScreen = () => {
 
     const panResponder = useRef(
         PanResponder.create({
-            onMoveShouldSetPanResponder: (evt, gestureState) => {
-                return Math.abs(gestureState.dx) > Math.abs(gestureState.dy);
-            },
+            onMoveShouldSetPanResponder: (evt, gestureState) =>
+                Math.abs(gestureState.dx) > Math.abs(gestureState.dy),
             onPanResponderRelease: (evt, gestureState) => {
                 if (gestureState.dx < -50) {
                     navigation.navigate('Favorites');
@@ -51,22 +57,20 @@ const HomeScreen = () => {
         })
     ).current;
 
-    // Load data from the JSON files
     const concerts = require('../data/concerts.json');
     const venues = require('../data/venues.json');
     const artists = require('../data/artists.json');
     const upcomingConcerts = require('../data/upcomingconcerts.json')
 
 
-    // Limit to the first 3 items for each section
     const limitedRecentData = concerts.slice(0, 3);
     const limitedUpcomingData = upcomingConcerts.slice(0, 3);
     const limitedVenuesData = venues.slice(0, 3);
 
-    // Render each section card
-    const renderCard = ({ item, type }: { item: { id: string; title: string }, type: string }) => (
-        <Card item={item} type={type} />
+    const renderCard = ({ item, type }) => (
+        <Card item={item} type={type} navigation={navigation} />
     );
+
     return (
         <Animated.View
             {...panResponder.panHandlers}
@@ -125,4 +129,3 @@ const HomeScreen = () => {
 
 
 export default HomeScreen;
-

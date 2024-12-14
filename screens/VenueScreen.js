@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import { getJSON } from '../services/api'; 
 import { buildPhotoUrl } from '../utility/formatting'; 
 import { PhotoView } from '../components/presentation';
-const flickrApiURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=719833438dd1801343c38a336ddecd9a&user_id=201776761@N04&extras=url_m&format=json&nojsoncallback=1`;
 
 const VenueScreen = () => {
     const navigation = useNavigation();
@@ -18,12 +17,20 @@ const VenueScreen = () => {
         } else if (gestureName === SWIPE_RIGHT) {
             navigation.navigate('Favorites'); 
         }
-    };
+      },
+    })
+  ).current;
 
-    const config = {
-        velocityThreshold: 0.3,
-        directionalOffsetThreshold: 80,
-    };
+  const settings = [
+    { id: '1', title: 'Profile' },
+    { id: '2', title: 'Notifications' },
+    { id: '3', title: 'Privacy' },
+    { id: '4', title: 'Language' },
+    { id: '5', title: 'Theme' },
+    { id: '6', title: 'Security' },
+    { id: '7', title: 'Help' },
+    { id: '8', title: 'About' },
+  ];
 
     return (
         <View style={styles.container}>

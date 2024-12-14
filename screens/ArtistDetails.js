@@ -33,18 +33,7 @@ const ArtistDetails = () => {
       <Text style={styles.artistGenre}>{renderText(artist.genre)}</Text>
       <Text style={styles.artistBio}>{renderText(artist.bio)}</Text>
 
-      {/* Render artist reviews */}
-      <Text style={styles.sectionTitle}>Reviews:</Text>
-      {Array.isArray(artist.reviews) && artist.reviews.length > 0 ? (
-        artist.reviews.map((review, index) => (
-          <View key={index} style={styles.reviewContainer}>
-            <Text style={styles.reviewAuthor}>By {renderText(review.author)}</Text>
-            <Text style={styles.reviewText}>{renderText(review.text)}</Text>
-          </View>
-        ))
-      ) : (
-        <Text>No reviews available</Text>
-      )}
+
 
       {/* Render artist photos */}
       <Text style={styles.sectionTitle}>Photos:</Text>

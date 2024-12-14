@@ -1,12 +1,15 @@
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import SplashScreen from 'react-native-splash-screen';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Image, StyleSheet, View, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import auth from '@react-native-firebase/auth';
+
+// Import all your existing screens
 import HomeScreen from './screens/HomeScreen';
 import FavoritesScreen from './screens/FavoritesScreen';
 import VenueScreen from './screens/VenueScreen';
@@ -19,12 +22,10 @@ import FavoriteArtists from './components/UserArtists.js';
 import RecentConcerts from './components/RecentConcerts.js';
 import UserVenues from './components/UserVenues';
 import ArtistDetails from './screens/ArtistDetails';
-import { styles, cardStyles, commonStyles } from './styles.js';
+import { appStyles } from './styles/styles.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
-const isLoggedIn = false;
 
 function AppLogo({ navigation }) {
     return (
@@ -32,13 +33,14 @@ function AppLogo({ navigation }) {
             <View style={styles.logoContainer}>
                 <Image
                     source={require('./images/logo.png')}
-                    style={[styles.logo, { width: 100, height: 100 }]} // Adjust the width and height here
+                    style={[styles.logo, { width: 100, height: 100 }]}
                     resizeMode="contain"
                 />
             </View>
         </TouchableOpacity>
     );
 }
+
 function HeaderRightSettings({ navigation }) {
     return (
         <TouchableOpacity onPress={() => navigation.navigate('SettingsModal')}>
@@ -90,7 +92,7 @@ function BottomTabs() {
                 tabBarIcon: ({ focused }) => {
                     let iconName;
                     let iconSize = focused ? 60 : 50;
-                    let iconColor = '#e4d1ff'; 
+                    let iconColor = '#e4d1ff'; // Change this line
 
                     if (route.name === 'Home') {
                         iconName = focused ? 'home' : 'home-outline';
@@ -112,9 +114,6 @@ function BottomTabs() {
                     backgroundColor: 'black',
                     height: 160,
                 },
-                headerLeftContainerStyle: {
-                    paddingLeft: 20, 
-                },
                 headerTintColor: '#fff',
             })}
         >
@@ -131,11 +130,7 @@ function BottomTabs() {
                     headerTitleStyle: {
                         fontSize: 30,
                         fontWeight: 'bold',
-                        textAlign: 'center',
-                        color: '#d1a7ff',
-                        textAlign: 'center',  
-                        marginLeft: 'auto',   
-                        marginRight: 'auto',
+                        color: '#e4d1ff',
                     },
                     headerLeftContainerStyle: {
                         paddingLeft: 20, 
@@ -155,12 +150,7 @@ function BottomTabs() {
                     headerTitleStyle: {
                         fontSize: 30,
                         fontWeight: 'bold',
-                        textAlign: 'center',
-                        color: '#d1a7ff',
-                        textAlign: 'center',  
-                        marginLeft: 'auto',   
-                        marginRight: 'auto',
-                        paddingLeft: 10,
+                        color: '#e4d1ff',
                     },
                     headerLeftContainerStyle: {
                         paddingLeft: 20, 
@@ -178,26 +168,75 @@ function BottomTabs() {
 }
 
 function App() {
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState(null);
+
+    // Handle user state changes
+    function onAuthStateChanged(authUser) {
+        setUser(authUser);
+        if (initializing) setInitializing(false);
+    }
+
     useEffect(() => {
-        // Hide the splash screen after everything is ready
+        // Subscribe to authentication state changes
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+
+        // Hide the splash screen after authentication check
         setTimeout(() => {
             SplashScreen.hide();
-        }, 1000); // Adding a delay to ensure everything is fully loaded before hiding the splash screen
+        }, 1000);
+
+        // Unsubscribe on unmount
+        return subscriber;
     }, []);
+
+    // If still initializing, you might want to show a loading screen
+    if (initializing) {
+        return null; // Or a loading component
+    }
 
     return (
         <FavoritesProvider>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName={isLoggedIn ? "Main" : "Welcome"}>
-                    <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
-                    <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: true,
-                                            headerTitle: 'Back' }} />
-                    <Stack.Screen name="Main" component={BottomTabs} options={{ headerShown: false }} />
-                   <Stack.Screen name="UserArtists" component={UserArtists} />
-                   <Stack.Screen name="FavoriteArtists" component={FavoriteArtists} />
-                  <Stack.Screen name="ArtistDetails" component={ArtistDetails} />
-                   <Stack.Screen name="RecentConcerts" component={RecentConcerts} />
-                   <Stack.Screen name="UserVenues" component={UserVenues} />
+                <Stack.Navigator initialRouteName={user ? "Main" : "Welcome"}>
+                    <Stack.Screen 
+                        name="Welcome" 
+                        component={WelcomeScreen} 
+                        options={{ headerShown: false }} 
+                    />
+                    <Stack.Screen 
+                        name="Login" 
+                        component={LoginScreen} 
+                        options={{ 
+                            headerShown: true,
+                            headerTitle: 'Back' 
+                        }} 
+                    />
+                    <Stack.Screen 
+                        name="Main" 
+                        component={BottomTabs} 
+                        options={{ headerShown: false }} 
+                    />
+                    <Stack.Screen name="UserArtists" component={UserArtists} />
+                    <Stack.Screen name="FavoriteArtists" component={FavoriteArtists} />
+                    <Stack.Screen name="ArtistDetails" component={ArtistDetails} />
+                    <Stack.Screen name="RecentConcerts" component={RecentConcerts} />
+                    <Stack.Screen name="UserVenues" component={UserVenues} />
+                    <Stack.Screen 
+                        name="VenueDetails" 
+                        component={VenueDetails} 
+                        options={{ title: 'Venue Details' }} 
+                    />
+                    <Stack.Screen 
+                        name="ConcertDetail" 
+                        component={ConcertDetail} 
+                        options={{ title: 'Concert Details' }} 
+                    />
+                    <Stack.Screen 
+                        name="UpcomingConcerts" 
+                        component={UpcomingConcerts} 
+                        options={{ title: 'Upcoming Concerts' }} 
+                    />
                     <Stack.Screen
                         name="SettingsModal"
                         component={SettingsModal}
