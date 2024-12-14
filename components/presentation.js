@@ -18,10 +18,10 @@ import { buildPhotoUrl, formatCards } from '../utility/formatting.js';
 //import photoStyles from '../styles.js';
 
 
-//const flickrApiURL = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=719833438dd1801343c38a336ddecd9a&gallery_id=72157723344285268&format=json&nojsoncallback=1`;
+//const flickrApiURL = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key={YourFlickrKey}&gallery_id=72157723344285268&format=json&nojsoncallback=1`;
 
 //camera roll
-const flickrApiURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=719833438dd1801343c38a336ddecd9a&user_id=201776761@N04&extras=url_m&format=json&nojsoncallback=1`;
+const flickrApiURL = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key={YourFlickrKey}a&user_id=201776761@N04&extras=url_m&format=json&nojsoncallback=1`;
 
 //const artists = getLocalJSON('artists');
 
