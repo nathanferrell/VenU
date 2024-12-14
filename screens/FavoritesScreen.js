@@ -4,6 +4,7 @@ import { useFavorites } from './FavoritesContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { screenStyles } from '../styles';
+import { StyleSheet } from 'react-native';
 
 const Card = ({ item, type, navigation }: { item: { id: string; title: string }; type: string; navigation: any }) => {
     const { removeFavorite } = useFavorites();
@@ -22,7 +23,7 @@ const Card = ({ item, type, navigation }: { item: { id: string; title: string };
             <TouchableOpacity onPress={() => removeFavorite(item.id)}>
                 <Ionicons name="heart" size={24} color="purple" />
             </TouchableOpacity>
-        </TouchableOpacity>
+        </View>
     );
 };
 
