@@ -90,7 +90,7 @@ function BottomTabs() {
                 tabBarIcon: ({ focused }) => {
                     let iconName;
                     let iconSize = focused ? 60 : 50;
-                    let iconColor = '#e4d1ff'; // Change this line
+                    let iconColor = '#e4d1ff'; 
 
                     if (route.name === 'Home') {
                         iconName = focused ? 'home' : 'home-outline';
@@ -113,7 +113,7 @@ function BottomTabs() {
                     height: 160,
                 },
                 headerLeftContainerStyle: {
-                    paddingLeft: 20, // Reduce padding to bring the title closer
+                    paddingLeft: 20, 
                 },
                 headerTintColor: '#fff',
             })}

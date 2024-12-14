@@ -102,3 +102,100 @@ export const cardStyles = StyleSheet.create({
         color: '#e4d1ff',
     },
 });
+
+export const photoStyles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: 'flex-start',
+		backgroundColor: '#BBBBBB'
+	},
+	heading: {
+		flex: 1,
+		alignItems: 'center',
+		marginTop: 1,
+		marginBottom: 4,
+		padding: 10,
+		backgroundColor: '#333444',
+	},
+	content: {
+		flex: 7,
+		marginTop: 0,
+		marginBottom: 4,
+		padding: 15,
+		backgroundColor: '#DDDFFF',
+	},
+  cardView: {
+		marginTop: 10,
+	},
+	card: {
+		margin: 10,
+		padding: 10,
+    borderWidth: 1,
+    //borderColor: '#BBBBBB',
+    backgroundColor: '#EEEEEE',
+    color: '#222222',
+	},
+  photosView: {
+    flex: 1,
+  },
+  photoCard: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: 10,
+    //borderWidth: 1,
+  },
+  photoCardMeta: {
+    width: 0,
+    flexGrow: 1,
+    flex: 1,
+  },
+  photoCardTitle: {
+    margin: 5,
+    fontSize: 13,
+    color: '#81A69B',
+    //borderWidth: 1,
+  },
+  photoCardText: {
+    margin: 5,
+    fontSize: 11,
+    borderWidth: 1,
+  },
+  imgThumb: {
+    width: 150,
+    height: 150,
+  },
+  imgFull: {
+    width: 500,
+    height: 500,
+  },
+	headingText: {
+		color: '#DDDDDD',
+		fontSize: 26,
+    fontWeight: '300',
+	},
+	contentText: {
+		color: '#333444',
+		fontSize: 15,
+		fontWeight: '300',
+	},
+  buttonBox: {
+		margin: 30,
+		padding: 5,
+	},
+  textLink: {
+    margin: 5,
+    padding: 5,
+    color: 'blue',
+  },
+  cardTitle: {
+		paddingBottom: 5,
+		color: '#4F5173',
+    fontSize: 16,
+	},
+	cardContent: {
+		fontSize: 12,
+  },
+});
+
+

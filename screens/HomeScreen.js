@@ -79,7 +79,7 @@ const HomeScreen = () => {
                         <Text style={screenStyles.sectionTitle}>Recent</Text>
                     </TouchableOpacity>
                     <FlatList
-                        data={limitedRecentData}  // Limit to 3 items
+                        data={limitedRecentData}  
                         renderItem={({ item }) => renderCard({ item: { id: item.id, title: item.name }, type: 'recent' })}
                         keyExtractor={(item) => item.id}
                         horizontal
@@ -94,7 +94,7 @@ const HomeScreen = () => {
                                     <Text style={screenStyles.sectionTitle}>Upcoming</Text>
                                 </TouchableOpacity>
                                 <FlatList
-                                   data={limitedUpcomingData}  // Use upcomingConcerts.json data
+                                   data={limitedUpcomingData}  
                                     renderItem={({ item }) => renderCard({ item: { id: item.id, title: item.name }, type: 'upcoming' })}
                                     keyExtractor={(item) => item.id}
                                     horizontal
